@@ -16,7 +16,8 @@ export const Users = () => {
           return {
             username: user.username,
             roll: user.roll,
-            uid: user.uid
+            uid: user.uid,
+            email: user.email
           };
         });
         resolved(users);
@@ -24,7 +25,27 @@ export const Users = () => {
     });
   };
 
+  const updateUserProfile = async ({ uid, name, roll, email }) => {
+    return new Promise(async (resolved) => {
+      const result = await db.ref("users/" + uid).update(
+        {
+          username: name,
+          roll,
+          email
+        },
+        (error) => {
+          if (error) {
+            resolved({ result: false, error });
+          } else {
+            resolved({ result: true });
+          }
+        }
+      );
+    });
+  };
+
   return {
-    getUsers
+    getUsers,
+    updateUserProfile
   };
 };
