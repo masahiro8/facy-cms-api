@@ -40,10 +40,10 @@ export default {
   },
   data: () => {
     return {
-      name: "",
-      email: "",
-      roll: "",
-      password: "",
+      name: null,
+      email: null,
+      roll: null,
+      password: null,
       result: null,
       contents,
     };
