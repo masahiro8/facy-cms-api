@@ -1,46 +1,40 @@
 <template>
-  <v-card class="page">
-    <h1>LOGIN</h1>
-    <v-form ref="form" v-model="valid" lazy-validation>
-      <v-container fluid>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-text-field
-              class="cols-4"
-              v-model="email"
-              label="メールアドレス"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-text-field
-              class="cols-4"
-              v-model="password"
-              type="password"
-              label="パスワード"
-              required
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" md="6">
-            <v-btn color="primary" class="button" @click="login"
-              >　ログイン　</v-btn
-            ></v-col
-          ><v-col cols="12" md="12"
-            ><v-textarea
-              filled
-              name="input-7-4"
-              label="Result"
-              v-model="result"
-            ></v-textarea></v-col
-        ></v-row>
-      </v-container>
-    </v-form>
-  </v-card>
+  <div class="page">
+    <h1>{{ contents.title }}</h1>
+    <div class="description">{{ contents.description }}</div>
+    <div class="interface">
+      <div class="inputs">
+        <input type="text" v-model="email" placeholder="email" />
+        <input type="password" v-model="password" placeholder="password" />
+      </div>
+      <div class="button">
+        <button class="submit" @click="submit">{{ contents.button }}</button>
+      </div>
+    </div>
+    <Result :code="contents.code" :response="result" />
+  </div>
 </template>
 <script>
+import Result from "./Result";
 import { UserAuth } from "../api/api";
+
+const contents = {
+  title: "UserAuth/login",
+  description: "ログインします",
+  button: `login`,
+  code: `import { UserAuth } from "../api/api";
+const params = {
+  email: this.email,
+  password: this.password,
+};
+const result = await UserAuth().login(params);`,
+};
+
 export default {
   name: "ViewLogin",
+  components: {
+    Result,
+  },
   data: () => {
     return {
       name: "",
@@ -48,34 +42,19 @@ export default {
       roll: "",
       password: "",
       result: null,
+      contents,
     };
   },
   mounted() {},
   methods: {
-    async signup() {
-      const params = {
-        email: this.email,
-        password: this.password,
-        name: this.name,
-        roll: this.roll,
-      };
-      const result = await UserAuth().signup(params);
-      this.result = JSON.stringify(result);
-      console.log("signup result", JSON.stringify(result));
-    },
-    async login() {
-      console.log("login");
+    async submit() {
       const params = {
         email: this.email,
         password: this.password,
       };
       const result = await UserAuth().login(params);
       this.result = JSON.stringify(result);
-      console.log("login result", JSON.stringify(result));
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-@import "./basic.scss";
-</style>

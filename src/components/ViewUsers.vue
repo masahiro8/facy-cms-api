@@ -1,29 +1,32 @@
 <template>
-  <v-card class="page">
-    <h1>Users</h1>
-    <v-form ref="form" v-model="valid" lazy-validation>
-      <v-container fluid>
-        <v-row>
-          <v-col cols="12" md="6">
-            <v-btn color="primary" class="button" @click="users"
-              >　ユーザー一覧　</v-btn
-            ></v-col
-          ><v-col cols="12" md="12"
-            ><v-textarea
-              filled
-              name="input-7-4"
-              label="Result"
-              v-model="result"
-            ></v-textarea></v-col
-        ></v-row>
-      </v-container>
-    </v-form>
-  </v-card>
+  <div class="page">
+    <h1>{{ contents.title }}</h1>
+    <div class="description">{{ contents.description }}</div>
+    <div class="interface">
+      <div class="button">
+        <button class="submit" @click="submit">{{ contents.button }}</button>
+      </div>
+    </div>
+    <Result :code="contents.code" :response="result" />
+  </div>
 </template>
 <script>
+import Result from "./Result";
 import { Users } from "../api/api";
+
+const contents = {
+  title: "Users/getUsers",
+  description: "ユーザーの一覧を取得します",
+  button: `users`,
+  code: `import { Users } from "../api/api";
+const result = await Users().getUsers();`,
+};
+
 export default {
   name: "ViewUsers",
+  components: {
+    Result,
+  },
   data: () => {
     return {
       name: "",
@@ -31,19 +34,15 @@ export default {
       roll: "",
       password: "",
       result: null,
+      contents,
     };
   },
   mounted() {},
   methods: {
-    async users() {
-      console.log("users");
+    async submit() {
       const result = await Users().getUsers();
       this.result = JSON.stringify(result);
-      console.log("profile result", JSON.stringify(result));
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-@import "./basic.scss";
-</style>

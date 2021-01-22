@@ -15,22 +15,20 @@ import Result from "./Result";
 import { UserAuth } from "../api/api";
 
 const contents = {
-  title: "UserAuth/profile",
-  description: "ログインしているユーザーのプロフィールを取得します",
-  button: `profile`,
+  title: "UserAuth/logout",
+  description: "ログアウトします",
+  button: `logout`,
   code: `import { UserAuth } from "../api/api";
-const result = await UserAuth().getLoggedinUserProfile();`,
+const result = await UserAuth().logout();`,
 };
 
 export default {
-  name: "ViewProfile",
-  components: { Result },
+  name: "ViewLogout",
+  components: {
+    Result,
+  },
   data: () => {
     return {
-      name: "",
-      email: "",
-      roll: "",
-      password: "",
       result: null,
       contents,
     };
@@ -38,7 +36,7 @@ export default {
   mounted() {},
   methods: {
     async submit() {
-      const result = await UserAuth().getLoggedinUserProfile();
+      const result = await UserAuth().logout();
       this.result = JSON.stringify(result);
     },
   },

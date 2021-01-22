@@ -13,6 +13,6 @@ initFirebase();
 Vue.config.productionTip = false;
 
 new Vue({
-  vuetify,
-  render: (h) => h(App)
+  render: (h) => h(App),
+  vuetify
 }).$mount("#app");

@@ -5,14 +5,35 @@
         <v-col>
           <ViewSignup />
         </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <ViewLogin />
         </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <ViewLogout />
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <ViewProfile />
         </v-col>
+      </v-row>
+      <v-row>
         <v-col>
           <ViewUsers />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <ViewProfileUpdate />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <ViewPasswordReset />
         </v-col>
       </v-row>
     </v-container>
@@ -23,16 +44,22 @@
 import { UserAuth, Users } from "./api/api";
 import ViewSignup from "./components/ViewSignup";
 import ViewLogin from "./components/ViewLogin";
+import ViewLogout from "./components/ViewLogout";
 import ViewProfile from "./components/ViewProfile";
 import ViewUsers from "./components/ViewUsers";
+import ViewProfileUpdate from "./components/ViewProfileUpdate";
+import ViewPasswordReset from "./components/ViewPasswordReset";
 
 export default {
   name: "App",
   components: {
     ViewSignup,
     ViewLogin,
+    ViewLogout,
     ViewProfile,
     ViewUsers,
+    ViewProfileUpdate,
+    ViewPasswordReset,
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();
@@ -48,7 +75,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "./basic.scss";
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

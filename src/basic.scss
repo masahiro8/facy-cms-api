@@ -1,0 +1,94 @@
+.page {
+  border-bottom: 1px solid #efefef;
+  padding: 24px;
+
+  h1 {
+    text-align: left;
+    font-size: 24px;
+    padding: 8px;
+  }
+  
+  .description {
+    text-align: left;
+    font-size:12px;
+    padding:8px;
+    white-space:pre-wrap;
+    word-wrap:break-word;
+  }
+
+  .interface {
+    display: flex;
+  }
+
+  .inputs {
+    display: flex;
+    padding: 8px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+
+    input[type="text"],
+    input[type="password"] {
+      font-size:12px;
+      outline: none;
+      display: block;
+      padding: 4px;
+      margin-right: 4px;
+      border-bottom: 1px solid black;
+      transition: all 0.2s ease-in-out;
+      &:active {
+        border-color: #ccff88;
+      }
+      &:focus {
+        border-color: #68ac0f;
+      }
+      &:disabled{
+        color:#aaa;
+        border-bottom:none;
+      }
+    }
+  }
+
+  .result {
+    display: flex;
+    min-height: 160px;
+
+    .col {
+      flex: 1;
+    }
+  }
+
+  .label {
+    font-size: 14px;
+    color: #aaa;
+    text-align: left;
+    padding: 2px;
+  }
+
+  pre {
+    background-color: #f8f8f8;
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  .textarea {
+    background-color: #f8f8f8;
+    width: 100%;
+    height: 96px;
+    padding: 8px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  button.submit {
+    background-color: #efefef;
+    color: black;
+    padding: 8px;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+}
