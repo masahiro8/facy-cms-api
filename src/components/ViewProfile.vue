@@ -27,10 +27,6 @@ export default {
   components: { Result },
   data: () => {
     return {
-      name: "",
-      email: "",
-      roll: "",
-      password: "",
       result: null,
       contents,
     };
