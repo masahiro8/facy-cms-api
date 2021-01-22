@@ -173,10 +173,33 @@ export const UserAuth = () => {
     });
   };
 
+  /**
+   * パスワードリセットメールを送信
+   *
+   * Firebaseコンソールの Settings > General > Public settingsの中を設定する
+   *
+   * Public-facing name > アプリ名
+   * Support email  > 返信先メール
+   *
+   */
+  const sendPasswordResetEmail = ({ email }) => {
+    return new Promise((resolved) => {
+      auth
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          resolved({ result: true });
+        })
+        .catch((error) => {
+          resolved({ result: false, error });
+        });
+    });
+  };
+
   return {
     signup,
     login,
     logout,
-    getLoggedinUserProfile
+    getLoggedinUserProfile,
+    sendPasswordResetEmail
   };
 };

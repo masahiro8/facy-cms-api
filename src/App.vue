@@ -18,6 +18,11 @@
       </v-row>
       <v-row>
         <v-col>
+          <ViewPasswordReset />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
           <ViewProfile />
         </v-col>
       </v-row>
@@ -29,11 +34,6 @@
       <v-row>
         <v-col>
           <ViewProfileUpdate />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewPasswordReset />
         </v-col>
       </v-row>
     </v-container>
