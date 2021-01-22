@@ -35,7 +35,7 @@ export default {
   },
   data: () => {
     return {
-      email: "",
+      email: null,
       result: null,
       contents,
     };
