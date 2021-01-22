@@ -6,6 +6,8 @@
     text-align: left;
     font-size: 24px;
     padding: 8px;
+    white-space:pre-wrap;
+    word-wrap:break-word;
   }
   
   .description {
@@ -18,6 +20,9 @@
 
   .interface {
     display: flex;
+    @media (max-width:540px) {
+      flex-direction: column;
+    }
   }
 
   .inputs {
@@ -46,6 +51,16 @@
         border-bottom:none;
       }
     }
+
+    @media (max-width:540px) {
+      flex-direction: column;
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        font-size:16px;
+        margin:8px 0;
+      }
+    }
   }
 
   .result {
@@ -54,6 +69,9 @@
 
     .col {
       flex: 1;
+    }
+    @media (max-width:540px) {
+      flex-direction: column;
     }
   }
 
@@ -72,6 +90,11 @@
     text-align: left;
   }
 
+  code{
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
   .textarea {
     background-color: #f8f8f8;
     width: 100%;
@@ -79,6 +102,8 @@
     padding: 8px;
     font-size: 12px;
     text-align: left;
+    word-break: break-all;
+    white-space: pre-wrap;
   }
 
   button.submit {
@@ -89,6 +114,13 @@
 
     &:hover {
       background-color: #ccc;
+    }
+
+    @media(max-width:540px){
+      width:100%;
+      margin:8px 0;
+      box-sizing: border-box;
+      display: block;
     }
   }
 }
