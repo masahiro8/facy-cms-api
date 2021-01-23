@@ -83,26 +83,37 @@ export const Reserves = () => {
    * @param {string} end_time 時間形式 10:30
    * @param {string} user_mail メール
    */
-  const setNewReserve = ({ date, start_time, end_time, user_mail }) => {
+  const setNewReserve = ({ reserve_date, start_time, end_time, email }) => {
     return new Promise(async (resolved) => {
-      const _date = date.split["-"];
-      const date = new Date(_date[0], _date[1], _date[2]);
-      const id = encrypt(date);
+      const _reserve_date = `${reserve_date}`.split("-");
+      const _date = new Date(
+        _reserve_date[0],
+        _reserve_date[1],
+        _reserve_date[2]
+      );
+      const id = encrypt(_date.getTime());
       const params = {
         id: id,
-        date: getToday(),
-        date_year: getTodayObject().year,
-        date_month: getTodayObject().month,
-        date_day: getTodayObject().day,
+        date: reserve_date,
+        date_year: _reserve_date[0],
+        date_month: _reserve_date[1],
+        date_day: _reserve_date[2],
         start_time,
         start_time_hour: start_time.split(":")[0],
         start_time_day: start_time.split(":")[1],
         end_time,
         end_time_hour: end_time.split(":")[0],
         end_time_day: end_time.split(":")[1],
-        user_mail
+        user_mail: email
       };
-      // db.ref("reserves/" + id).set(params);
+      db.ref("reserves/" + id).set(params, (error) => {
+        if (error) {
+          resolved({ result: false, error });
+        } else {
+          resolved({ result: true });
+        }
+      });
+      console.log(params);
       resolved(params);
     });
   };
