@@ -36,17 +36,14 @@
           <ViewProfileUpdate />
         </v-col>
       </v-row>
+      <v-row>
+        <v-col>
+          <ViewSetNewReserve />
+        </v-col>
+      </v-row>
     </v-container>
-    <v-navigation-drawer
-      v-model="drawer"
-      absolute
-      bottom
-      temporary
-    >
-      <v-list
-        nav
-        dense
-      >
+    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+      <v-list nav dense>
         <v-list-item-group
           v-model="group"
           active-class="deep-purple--text text--accent-4"
@@ -81,6 +78,7 @@ import ViewProfile from "./components/ViewProfile";
 import ViewUsers from "./components/ViewUsers";
 import ViewProfileUpdate from "./components/ViewProfileUpdate";
 import ViewPasswordReset from "./components/ViewPasswordReset";
+import ViewSetNewReserve from "./components/ViewSetNewReserve";
 
 export default {
   name: "App",
@@ -92,6 +90,7 @@ export default {
     ViewUsers,
     ViewProfileUpdate,
     ViewPasswordReset,
+    ViewSetNewReserve,
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();

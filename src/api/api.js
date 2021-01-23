@@ -1,8 +1,9 @@
 import firebase from "firebase";
 import { UserAuth } from "./userAuth";
 import { Users } from "./users";
+import { Reserves } from "./reserve";
 
-const initFirebase = () => {
+function initFirebase() {
   const firebaseConfig = {
     apiKey: "AIzaSyAHFgp5NbVzb9X38XShElfc9OT1xPGtDOs",
     authDomain: "mahou-c71dd.firebaseapp.com",
@@ -13,6 +14,6 @@ const initFirebase = () => {
     measurementId: "G-WYGVNV114R"
   };
   firebase.initializeApp(firebaseConfig);
-};
+}
 
-export { initFirebase, UserAuth, Users };
+export { initFirebase, UserAuth, Users, Reserves };

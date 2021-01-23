@@ -7,6 +7,10 @@ const req = (ar) => {
 const mnumber = 2;
 
 //暗号化
+/**
+ *
+ * @param {number} n unixタイムスタンプ 秒 > Date.getTime()
+ */
 export const encrypt = (n) => {
   const _n = `${n}`;
   const id = `${
