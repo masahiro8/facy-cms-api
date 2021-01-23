@@ -46,6 +46,16 @@
           <ViewReserves />
         </v-col>
       </v-row>
+      <v-row>
+        <v-col>
+          <ViewReserveUpdate />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <ViewReserveDelete />
+        </v-col>
+      </v-row>
     </v-container>
     <v-navigation-drawer v-model="drawer" absolute bottom temporary>
       <v-list nav dense>
@@ -85,6 +95,8 @@ import ViewProfileUpdate from "./components/ViewProfileUpdate";
 import ViewPasswordReset from "./components/ViewPasswordReset";
 import ViewSetNewReserve from "./components/ViewSetNewReserve";
 import ViewReserves from "./components/ViewReserves";
+import ViewReserveUpdate from "./components/ViewReserveUpdate";
+import ViewReserveDelete from "./components/ViewReserveDelete";
 
 export default {
   name: "App",
@@ -98,6 +110,8 @@ export default {
     ViewPasswordReset,
     ViewSetNewReserve,
     ViewReserves,
+    ViewReserveUpdate,
+    ViewReserveDelete
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();
