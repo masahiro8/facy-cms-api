@@ -5,9 +5,9 @@ import { getToday, getTodayObject, formatDateObject } from "./util/DateUtil.js";
 {
   "id": 10001,
   "date": "2020-01-24",
-  "date_year": "2020",
-  "date_month": "01",
-  "date_day": "24",
+  "date_yyyy": "2020",
+  "date_yyyymm": "202001",
+  "date_yyyymmdd": "20200124",
   "start_time": "10:30",
   "start_time_hour": "10",
   "start_time_day": "30",
@@ -33,46 +33,38 @@ export const Reserves = () => {
    */
   const getReserves = ({ year, month, day }) => {
     return new Promise(async (resolved) => {
+      let ref = null;
       if (year && !month && !day) {
-        const ref = await db
+        ref = await db
           .ref("/reserves")
-          .orderByChild("year")
-          .equatTo(year);
-        ref.on("value", (snapshot) => {
-          const _reserves = snapshot.val();
-          resolved(_reserves);
-        });
+          .orderByChild("date_yyyy")
+          .equalTo(`${year}`);
       } else if (year && month && !day) {
-        const ref = await db
+        ref = await db
           .ref("/reserves")
-          .orderByChild("year")
-          .equatTo(year)
-          .orderByChild("month")
-          .equatTo(month);
-        ref.on("value", (snapshot) => {
-          const _reserves = snapshot.val();
-          resolved(_reserves);
-        });
+          .orderByChild("date_yyyymm")
+          .equalTo(`${year}${month}`);
       } else if (year && month && day) {
-        const ref = await db
+        ref = await db
           .ref("/reserves")
-          .orderByChild("year")
-          .equatTo(year)
-          .orderByChild("month")
-          .equatTo(month)
-          .orderByChild("day")
-          .equatTo(day);
-        ref.on("value", (snapshot) => {
-          const _reserves = snapshot.val();
-          resolved(_reserves);
-        });
+          .orderByChild("date_yyyymmdd")
+          .equalTo(`${year}${month}${day}`);
       } else {
-        const ref = await db.ref("/reserves");
-        ref.on("value", (snapshot) => {
-          const _reserves = snapshot.val();
-          resolved(_reserves);
-        });
+        ref = await db.ref("/reserves");
       }
+      ref.on("value", (snapshot) => {
+        const _reserves = snapshot.val();
+        // const reserves = Object.keys(_reserves).map((key) => {
+        //   return {
+        //     date: _reserves[key].date,
+        //     end_time: _reserves[key].end_time,
+        //     id: _reserves[key].id,
+        //     start_time: _reserves[key].start_time,
+        //     user_mail: _reserves[key].user_mail
+        //   };
+        // });
+        resolved(_reserves);
+      });
     });
   };
 
@@ -95,9 +87,9 @@ export const Reserves = () => {
       const params = {
         id: id,
         date: reserve_date,
-        date_year: _reserve_date[0],
-        date_month: _reserve_date[1],
-        date_day: _reserve_date[2],
+        date_yyyy: _reserve_date[0],
+        date_yyyymm: `${_reserve_date[0]}${_reserve_date[1]}`,
+        date_yyyymmdd: `${_reserve_date[0]}${_reserve_date[1]}${_reserve_date[2]}`,
         start_time,
         start_time_hour: start_time.split(":")[0],
         start_time_day: start_time.split(":")[1],
