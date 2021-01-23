@@ -5,7 +5,7 @@
     <div class="interface">
       <div class="inputs">
         <input type="text" v-model="email" placeholder="email" />
-        <input type="password" v-model="password" placeholder="password" />
+        <input type="text" v-model="password" placeholder="password" />
       </div>
       <div class="button">
         <button class="submit" @click="submit">{{ contents.button }}</button>
