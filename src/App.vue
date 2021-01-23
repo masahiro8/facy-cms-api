@@ -1,86 +1,138 @@
 <template>
   <div id="app">
-    <v-container>
-      <v-row>
-        <v-col>
-          <ViewSignup />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewLogin />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewLogout />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewPasswordReset />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewProfile />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewUsers />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewProfileUpdate />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewSetNewReserve />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewReserves />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewReserveUpdate />
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <ViewReserveDelete />
-        </v-col>
-      </v-row>
-    </v-container>
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
-      <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        >
-          <v-list-item>
-            <v-list-item-title>Foo</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Bar</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Fizz</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>Buzz</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
+    <v-sheet class="overflow-hidden">
+      <v-app-bar
+        scroll-target="#scrolling-main"
+        hide-on-scroll
+        absolute
+        dense
+        dark
+      >
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>Api</v-toolbar-title>
+        <v-spacer></v-spacer>
+      </v-app-bar>
+      <!-- ページ -->
+      <v-sheet id="scrolling-main" class="overflow-y-auto" max-height="100vh">
+        <v-container>
+          <v-row id="signup">
+            <v-col>
+              <ViewSignup />
+            </v-col>
+          </v-row>
+          <v-row id="login">
+            <v-col>
+              <ViewLogin />
+            </v-col>
+          </v-row>
+          <v-row id="logout">
+            <v-col>
+              <ViewLogout />
+            </v-col>
+          </v-row>
+          <v-row id="passwordreset">
+            <v-col>
+              <ViewPasswordReset />
+            </v-col>
+          </v-row>
+          <v-row id="profile">
+            <v-col>
+              <ViewProfile />
+            </v-col>
+          </v-row>
+          <v-row id="users">
+            <v-col>
+              <ViewUsers />
+            </v-col>
+          </v-row>
+          <v-row id="profileupdate">
+            <v-col>
+              <ViewProfileUpdate />
+            </v-col>
+          </v-row>
+          <v-row id="newreserve">
+            <v-col>
+              <ViewSetNewReserve />
+            </v-col>
+          </v-row>
+          <v-row id="reserves">
+            <v-col>
+              <ViewReserves />
+            </v-col>
+          </v-row>
+          <v-row id="updatereserve">
+            <v-col>
+              <ViewReserveUpdate />
+            </v-col>
+          </v-row>
+          <v-row id="deletereserve">
+            <v-col>
+              <ViewReserveDelete />
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-sheet>
+      <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+        <v-list nav dense class="drawer">
+          <v-list-item-group
+            v-model="group"
+            active-class="deep-purple--text text--accent-4"
+          >
+            <v-list-item>
+              <v-list-item-title>
+                <a href="#signup">signup</a>
+              </v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title><a href="#login">login</a></v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#logout">logout</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#passwordreset">passwordreset</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#profile">profile</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title><a href="#users">users</a></v-list-item-title>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#profileupdate">profileupdate</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#newreserve">newreserve</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#reserves">reserves</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#updatereserve">updatereserve</a></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-title
+                ><a href="#deletereserve">deletereserve</a></v-list-item-title
+              >
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
+    </v-sheet>
   </div>
 </template>
 
@@ -100,6 +152,12 @@ import ViewReserveDelete from "./components/ViewReserveDelete";
 
 export default {
   name: "App",
+  data: () => {
+    return {
+      drawer: false,
+      collapseOnScroll: true,
+    };
+  },
   components: {
     ViewSignup,
     ViewLogin,
@@ -111,7 +169,7 @@ export default {
     ViewSetNewReserve,
     ViewReserves,
     ViewReserveUpdate,
-    ViewReserveDelete
+    ViewReserveDelete,
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();
@@ -130,11 +188,26 @@ export default {
 <style lang="scss">
 @import "./basic.scss";
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-y-auto {
+  overflow-y: scroll;
+}
+.drawer {
+  .v-list-item__title {
+    text-align: left;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
 }
 </style>
