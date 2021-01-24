@@ -2,6 +2,7 @@ import firebase from "firebase";
 import { UserAuth } from "./userAuth";
 import { Users } from "./users";
 import { Reserves } from "./reserve";
+import { ConfigReserve } from "./ConfigReserve";
 
 function initFirebase() {
   const firebaseConfig = {
@@ -16,4 +17,4 @@ function initFirebase() {
   firebase.initializeApp(firebaseConfig);
 }
 
-export { initFirebase, UserAuth, Users, Reserves };
+export { initFirebase, UserAuth, Users, Reserves, ConfigReserve };

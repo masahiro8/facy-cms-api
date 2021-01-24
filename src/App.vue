@@ -9,7 +9,7 @@
         dark
       >
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title>Api</v-toolbar-title>
+        <v-toolbar-title>Reserve Api</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-app-bar>
       <!-- ページ -->
@@ -70,66 +70,147 @@
               <ViewReserveDelete />
             </v-col>
           </v-row>
+          <v-row id="configinit">
+            <v-col>
+              <ViewConfigInit />
+            </v-col>
+          </v-row>
+          <v-row id="configget">
+            <v-col>
+              <ViewConfigGet />
+            </v-col>
+          </v-row>
+          <v-row id="updatedayofweek">
+            <v-col>
+              <ViewConfigUpdateDayOfWeek />
+            </v-col>
+          </v-row>
+          <v-row id="setdate">
+            <v-col>
+              <ViewConfigSetDate />
+            </v-col>
+          </v-row>
         </v-container>
       </v-sheet>
       <v-navigation-drawer v-model="drawer" absolute bottom temporary>
         <v-list nav dense class="drawer">
-          <v-list-item-group
-            v-model="group"
-            active-class="deep-purple--text text--accent-4"
-          >
+          <v-list-group v-model="drawerMenu.UserAuth.active" no-action>
+            <template v-slot:activator>
+              <v-list-item-content> UserAuth </v-list-item-content>
+            </template>
             <v-list-item>
-              <v-list-item-title>
-                <a href="#signup">signup</a>
-              </v-list-item-title>
+              <v-list-item-content>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#signup">signup</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#login">login</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#logout">logout</a></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#passwordreset"
+                      >passwordreset</a
+                    ></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#profile">profile</a></v-list-item-title
+                  >
+                </v-list-item>
+              </v-list-item-content>
             </v-list-item>
+          </v-list-group>
+          <v-list-group v-model="drawerMenu.Users.active" no-action>
+            <template v-slot:activator>
+              <v-list-item-content> Users </v-list-item-content>
+            </template>
             <v-list-item>
-              <v-list-item-title><a href="#login">login</a></v-list-item-title>
+              <v-list-item-content>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#users">users</a></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#profileupdate">profileupdate</a>
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list-item-content>
             </v-list-item>
+          </v-list-group>
+          <v-list-group v-model="drawerMenu.Reserve.active" no-action>
+            <template v-slot:activator>
+              <v-list-item-content> Reserve </v-list-item-content>
+            </template>
             <v-list-item>
-              <v-list-item-title
-                ><a href="#logout">logout</a></v-list-item-title
-              >
+              <v-list-item-content>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#newreserve">newreserve</a></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#reserves">reserves</a></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#updatereserve"
+                      >updatereserve</a
+                    ></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
+                    ><a href="#deletereserve"
+                      >deletereserve</a
+                    ></v-list-item-title
+                  >
+                </v-list-item>
+              </v-list-item-content>
             </v-list-item>
+          </v-list-group>
+          <v-list-group v-model="drawerMenu.ConfigReserve.active" no-action>
+            <template v-slot:activator>
+              <v-list-item-content> ConfigReserve </v-list-item-content>
+            </template>
             <v-list-item>
-              <v-list-item-title
-                ><a href="#passwordreset">passwordreset</a></v-list-item-title
-              >
+              <v-list-item-content>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#configinit">configinit</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#configget">configget</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#updatedayofweek">updatedayofweek</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#setdate">setdate</a>
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list-item-content>
             </v-list-item>
-            <v-list-item>
-              <v-list-item-title
-                ><a href="#profile">profile</a></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title><a href="#users">users</a></v-list-item-title>
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title
-                ><a href="#profileupdate">profileupdate</a></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title
-                ><a href="#newreserve">newreserve</a></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title
-                ><a href="#reserves">reserves</a></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title
-                ><a href="#updatereserve">updatereserve</a></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item>
-              <v-list-item-title
-                ><a href="#deletereserve">deletereserve</a></v-list-item-title
-              >
-            </v-list-item>
-          </v-list-item-group>
+          </v-list-group>
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
@@ -149,6 +230,10 @@ import ViewSetNewReserve from "./components/ViewSetNewReserve";
 import ViewReserves from "./components/ViewReserves";
 import ViewReserveUpdate from "./components/ViewReserveUpdate";
 import ViewReserveDelete from "./components/ViewReserveDelete";
+import ViewConfigInit from "./components/ViewConfigInit";
+import ViewConfigGet from "./components/ViewConfigGet";
+import ViewConfigUpdateDayOfWeek from "./components/ViewConfigUpdateDayOfWeek";
+import ViewConfigSetDate from "./components/ViewConfigSetDate";
 
 export default {
   name: "App",
@@ -156,6 +241,12 @@ export default {
     return {
       drawer: false,
       collapseOnScroll: true,
+      drawerMenu: {
+        UserAuth: { active: false },
+        Users: { active: false },
+        Reserve: { active: false },
+        ConfigReserve: { active: false },
+      },
     };
   },
   components: {
@@ -170,6 +261,10 @@ export default {
     ViewReserves,
     ViewReserveUpdate,
     ViewReserveDelete,
+    ViewConfigInit,
+    ViewConfigGet,
+    ViewConfigUpdateDayOfWeek,
+    ViewConfigSetDate,
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();
