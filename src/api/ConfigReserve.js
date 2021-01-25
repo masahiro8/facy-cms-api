@@ -186,10 +186,34 @@ export const ConfigReserve = () => {
     });
   };
 
+  //日付パスを作成
+  const getResevePath = (datearray, path) => {
+    const key = datearray.shift();
+    if (key) {
+      path = `${path}/${key}`;
+      return getResevePath(datearray, path);
+    } else {
+      return path;
+    }
+  };
+
   //全件
   const get = () => {
     return new Promise(async (resolved) => {
       const ref = await db.ref("/config_reserves");
+      ref.on("value", (snapshot) => {
+        const _values = snapshot.val();
+        resolved(_values);
+      });
+    });
+  };
+
+  //日付で取得
+  const getDate = ({ year, month, day }) => {
+    const path = getResevePath([year, month, day], "/config_reserves/date");
+    console.log("path = ", path);
+    return new Promise(async (resolved) => {
+      const ref = await db.ref(path);
       ref.on("value", (snapshot) => {
         const _values = snapshot.val();
         resolved(_values);
@@ -259,6 +283,7 @@ export const ConfigReserve = () => {
   return {
     init,
     get,
+    getDate,
     updateDayOfWeek,
     setDate
   };

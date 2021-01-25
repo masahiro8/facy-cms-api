@@ -80,6 +80,11 @@
               <ViewConfigGet />
             </v-col>
           </v-row>
+          <v-row id="configgetdate">
+            <v-col>
+              <ViewConfigGetDate />
+            </v-col>
+          </v-row>
           <v-row id="updatedayofweek">
             <v-col>
               <ViewConfigUpdateDayOfWeek />
@@ -232,6 +237,7 @@ import ViewReserveUpdate from "./components/ViewReserveUpdate";
 import ViewReserveDelete from "./components/ViewReserveDelete";
 import ViewConfigInit from "./components/ViewConfigInit";
 import ViewConfigGet from "./components/ViewConfigGet";
+import ViewConfigGetDate from "./components/ViewConfigGetDate";
 import ViewConfigUpdateDayOfWeek from "./components/ViewConfigUpdateDayOfWeek";
 import ViewConfigSetDate from "./components/ViewConfigSetDate";
 
@@ -265,6 +271,7 @@ export default {
     ViewConfigGet,
     ViewConfigUpdateDayOfWeek,
     ViewConfigSetDate,
+    ViewConfigGetDate,
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();
