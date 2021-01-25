@@ -1,5 +1,5 @@
 import firebase from "firebase";
-
+import { DAY_OF_WEEK } from "./statics.js";
 //json
 //https://github.com/masahiro8/facy-cms-v2/blob/main/public/json/config_schedule.json
 
@@ -221,6 +221,21 @@ export const ConfigReserve = () => {
     });
   };
 
+  //週の設定を取得
+  const getDayOfWeek = (day) => {
+    return new Promise(async (resolved) => {
+      const ref = await db.ref(
+        day
+          ? `/config_reserves/day_of_week/${day}`
+          : "/config_reserves/day_of_week"
+      );
+      ref.on("value", (snapshot) => {
+        const _values = snapshot.val();
+        resolved(_values);
+      });
+    });
+  };
+
   //曜日単位で更新
   const updateDayOfWeek = async (params) => {
     return new Promise(async (resolved) => {
@@ -284,6 +299,7 @@ export const ConfigReserve = () => {
     init,
     get,
     getDate,
+    getDayOfWeek,
     updateDayOfWeek,
     setDate
   };

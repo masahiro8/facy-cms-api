@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <v-sheet class="overflow-hidden">
       <v-app-bar
         scroll-target="#scrolling-main"
@@ -83,6 +83,11 @@
           <v-row id="configgetdate">
             <v-col>
               <ViewConfigGetDate />
+            </v-col>
+          </v-row>
+          <v-row id="configgetdayofweek">
+            <v-col>
+              <ViewConfigGetDayOfWeek />
             </v-col>
           </v-row>
           <v-row id="updatedayofweek">
@@ -205,6 +210,16 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title>
+                    <a href="#configgetDate">configgetdate</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
+                    <a href="#configgetdayofweek">configgetdayofweek</a>
+                  </v-list-item-title>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>
                     <a href="#updatedayofweek">updatedayofweek</a>
                   </v-list-item-title>
                 </v-list-item>
@@ -219,7 +234,7 @@
         </v-list>
       </v-navigation-drawer>
     </v-sheet>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -238,6 +253,7 @@ import ViewReserveDelete from "./components/ViewReserveDelete";
 import ViewConfigInit from "./components/ViewConfigInit";
 import ViewConfigGet from "./components/ViewConfigGet";
 import ViewConfigGetDate from "./components/ViewConfigGetDate";
+import ViewConfigGetDayOfWeek from "./components/ViewConfigGetDayOfWeek";
 import ViewConfigUpdateDayOfWeek from "./components/ViewConfigUpdateDayOfWeek";
 import ViewConfigSetDate from "./components/ViewConfigSetDate";
 
@@ -272,6 +288,7 @@ export default {
     ViewConfigUpdateDayOfWeek,
     ViewConfigSetDate,
     ViewConfigGetDate,
+    ViewConfigGetDayOfWeek,
   },
   async mounted() {
     const result = await UserAuth().getLoggedinUserProfile();

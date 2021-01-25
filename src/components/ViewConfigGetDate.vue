@@ -25,7 +25,7 @@ const contents = {
 year,month,dayを指定して取得、指定しない場合はそれぞれnullを設定します`,
   button: `getDate`,
   code: `import { ConfigReserve } from "../api/api";
-const result = await ConfigReserve().get({
+const result = await ConfigReserve().getDate({
   year: "2021",
   month: "01",
   day: null,
