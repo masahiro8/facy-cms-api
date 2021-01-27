@@ -1,7 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
-import vuetify from "@/plugins/vuetify";
+import Vuetify from "@/plugins/vuetify";
 import { initFirebase } from "./api/api";
+import "vuetify/dist/vuetify.min.css";
 
 //vuetify テーマ適用
 //https://vuetifyjs.com/ja/getting-started/installation/#cdn-3067306e4f7f7528
@@ -12,7 +13,17 @@ import { initFirebase } from "./api/api";
 initFirebase();
 Vue.config.productionTip = false;
 
+Vue.use(Vuetify);
+
+// vuetifyのオプション設定
+const opts = {
+  icons: { iconfont: "mdiSvg" },
+  theme: {
+    dark: false,
+  },
+};
+
 new Vue({
   render: (h) => h(App),
-  vuetify
+  vuetify: new Vuetify(opts),
 }).$mount("#app");
