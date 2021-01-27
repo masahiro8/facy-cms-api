@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
-import Vuetify from "@/plugins/vuetify";
+import Vuetify from "vuetify";
 import { initFirebase } from "./api/api";
 import "vuetify/dist/vuetify.min.css";
 
