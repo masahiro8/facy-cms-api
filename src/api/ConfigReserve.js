@@ -210,7 +210,6 @@ export const ConfigReserve = () => {
   //日付で取得
   const getDate = ({ year, month, day }) => {
     const path = getResevePath([year, month, day], "/config_reserves/date");
-    console.log("path = ", path);
     return new Promise((resolved) => {
       const ref = db.ref(path);
       ref.on("value", (snapshot) => {

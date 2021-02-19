@@ -60,6 +60,11 @@
               <ViewReserves />
             </v-col>
           </v-row>
+          <v-row id="reservalbetime">
+            <v-col>
+              <ViewReservableTime />
+            </v-col>
+          </v-row>
           <v-row id="updatereserve">
             <v-col>
               <ViewReserveUpdate />
@@ -177,6 +182,13 @@
                 </v-list-item>
                 <v-list-item>
                   <v-list-item-title
+                    ><a href="#reservabletime"
+                      >reservabletime</a
+                    ></v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title
                     ><a href="#updatereserve"
                       >updatereserve</a
                     ></v-list-item-title
@@ -238,95 +250,97 @@
 </template>
 
 <script>
-import { UserAuth, Users } from "./api/api";
-import ViewSignup from "./components/ViewSignup";
-import ViewLogin from "./components/ViewLogin";
-import ViewLogout from "./components/ViewLogout";
-import ViewProfile from "./components/ViewProfile";
-import ViewUsers from "./components/ViewUsers";
-import ViewProfileUpdate from "./components/ViewProfileUpdate";
-import ViewPasswordReset from "./components/ViewPasswordReset";
-import ViewSetNewReserve from "./components/ViewSetNewReserve";
-import ViewReserves from "./components/ViewReserves";
-import ViewReserveUpdate from "./components/ViewReserveUpdate";
-import ViewReserveDelete from "./components/ViewReserveDelete";
-import ViewConfigInit from "./components/ViewConfigInit";
-import ViewConfigGet from "./components/ViewConfigGet";
-import ViewConfigGetDate from "./components/ViewConfigGetDate";
-import ViewConfigGetDayOfWeek from "./components/ViewConfigGetDayOfWeek";
-import ViewConfigUpdateDayOfWeek from "./components/ViewConfigUpdateDayOfWeek";
-import ViewConfigSetDate from "./components/ViewConfigSetDate";
+  import { UserAuth, Users } from "./api/api";
+  import ViewSignup from "./components/ViewSignup";
+  import ViewLogin from "./components/ViewLogin";
+  import ViewLogout from "./components/ViewLogout";
+  import ViewProfile from "./components/ViewProfile";
+  import ViewUsers from "./components/ViewUsers";
+  import ViewProfileUpdate from "./components/ViewProfileUpdate";
+  import ViewPasswordReset from "./components/ViewPasswordReset";
+  import ViewSetNewReserve from "./components/ViewSetNewReserve";
+  import ViewReserves from "./components/ViewReserves";
+  import ViewReservableTime from "./components/ViewReservableTime";
+  import ViewReserveUpdate from "./components/ViewReserveUpdate";
+  import ViewReserveDelete from "./components/ViewReserveDelete";
+  import ViewConfigInit from "./components/ViewConfigInit";
+  import ViewConfigGet from "./components/ViewConfigGet";
+  import ViewConfigGetDate from "./components/ViewConfigGetDate";
+  import ViewConfigGetDayOfWeek from "./components/ViewConfigGetDayOfWeek";
+  import ViewConfigUpdateDayOfWeek from "./components/ViewConfigUpdateDayOfWeek";
+  import ViewConfigSetDate from "./components/ViewConfigSetDate";
 
-export default {
-  name: "App",
-  data: () => {
-    return {
-      drawer: false,
-      collapseOnScroll: true,
-      drawerMenu: {
-        UserAuth: { active: false },
-        Users: { active: false },
-        Reserve: { active: false },
-        ConfigReserve: { active: false },
-      },
-    };
-  },
-  components: {
-    ViewSignup,
-    ViewLogin,
-    ViewLogout,
-    ViewProfile,
-    ViewUsers,
-    ViewProfileUpdate,
-    ViewPasswordReset,
-    ViewSetNewReserve,
-    ViewReserves,
-    ViewReserveUpdate,
-    ViewReserveDelete,
-    ViewConfigInit,
-    ViewConfigGet,
-    ViewConfigUpdateDayOfWeek,
-    ViewConfigSetDate,
-    ViewConfigGetDate,
-    ViewConfigGetDayOfWeek,
-  },
-  async mounted() {
-    const result = await UserAuth().getLoggedinUserProfile();
-    if (result) {
-      //ログイン済み
-      const users = await Users().getUsers();
-      console.log("welcome ", result.username, users);
-    } else {
-      //未ログイン
-      console.log("please login ");
-    }
-  },
-};
+  export default {
+    name: "App",
+    data: () => {
+      return {
+        drawer: false,
+        collapseOnScroll: true,
+        drawerMenu: {
+          UserAuth: { active: false },
+          Users: { active: false },
+          Reserve: { active: false },
+          ConfigReserve: { active: false },
+        },
+      };
+    },
+    components: {
+      ViewSignup,
+      ViewLogin,
+      ViewLogout,
+      ViewProfile,
+      ViewUsers,
+      ViewProfileUpdate,
+      ViewPasswordReset,
+      ViewSetNewReserve,
+      ViewReserves,
+      ViewReservableTime,
+      ViewReserveUpdate,
+      ViewReserveDelete,
+      ViewConfigInit,
+      ViewConfigGet,
+      ViewConfigUpdateDayOfWeek,
+      ViewConfigSetDate,
+      ViewConfigGetDate,
+      ViewConfigGetDayOfWeek,
+    },
+    async mounted() {
+      const result = await UserAuth().getLoggedinUserProfile();
+      if (result) {
+        //ログイン済み
+        const users = await Users().getUsers();
+        console.log("welcome ", result.username, users);
+      } else {
+        //未ログイン
+        console.log("please login ");
+      }
+    },
+  };
 </script>
 
 <style lang="scss">
-@import "./basic.scss";
-#app {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @import "./basic.scss";
+  #app {
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 
-.overflow-hidden {
-  overflow: hidden;
-}
-.overflow-y-auto {
-  overflow-y: scroll;
-}
-.drawer {
-  .v-list-item__title {
-    text-align: left;
+  .overflow-hidden {
+    overflow: hidden;
   }
-  a {
-    text-decoration: none;
-    color: black;
+  .overflow-y-auto {
+    overflow-y: scroll;
   }
-}
+  .drawer {
+    .v-list-item__title {
+      text-align: left;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
 </style>
