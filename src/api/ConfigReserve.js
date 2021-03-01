@@ -270,9 +270,14 @@ export const ConfigReserve = () => {
       return reqKey(dateconfig[key], datearray, path, value);
     } else {
       //ここから値を再帰的に作成
-      const _key = datearray.pop();
-      const param = getKeyParam(datearray, { [_key]: value });
-      return { path, param: { [key]: param } };
+      datearray.pop();
+      const param = getKeyParam(datearray, value);
+      if (!key) {
+        // 日付keyがない場合
+        return { path, param }
+      } else {
+        return { path, param: { [key]: param } };       
+      }
     }
   };
 
