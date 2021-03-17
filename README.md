@@ -69,3 +69,18 @@ ConfgiReserve/getDayOfWeek
 #### 曜日設定を更新
 
 ConfgiReserve/updateDayOfWeek
+
+
+## 4.type id 設定
+
+#### type_idを取得
+ViewTypeids/get
+
+#### type_idを新規作成
+ViewTypeids/create
+
+#### 既存type_idを更新
+ViewTypeids/update
+
+#### type_idを削除
+ViewTypeids/remove
