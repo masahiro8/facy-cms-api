@@ -334,6 +334,7 @@ export default {
         Users: { active: false },
         Reserve: { active: false },
         ConfigReserve: { active: false },
+        Typeids: { active: false },
       },
     };
   },
